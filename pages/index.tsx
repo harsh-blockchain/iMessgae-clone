@@ -1,10 +1,12 @@
 import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { GetServerSideProps } from "next";
 
 type Props = {};
 
 function index({}: Props) {
   const { data: session } = useSession();
+  console.log("session", session);
   return (
     <div>
       {session ? (
@@ -23,3 +25,5 @@ function index({}: Props) {
 }
 
 export default index;
+
+/* server Side Props */
