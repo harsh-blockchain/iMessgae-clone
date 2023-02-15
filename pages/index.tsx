@@ -1,29 +1,41 @@
 import React from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { GetServerSideProps } from "next";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
+import { GetServerSideProps, NextPageContext } from "next";
+import { Box } from "@chakra-ui/react";
+import Chat from "../src/components/Chat/Chat";
+import Auth from "../src/components/Auth/Auth";
 
 type Props = {};
 
 function index({}: Props) {
   const { data: session } = useSession();
+
+  const reloadSession = async () => {
+    const event = new Event("visibilitychange");
+    document.dispatchEvent(event);
+  };
+
   console.log("session", session);
   return (
-    <div>
-      {session ? (
-        <div>
-          <div>Logged in as {session.user?.email}</div>
-          <button onClick={() => signOut()}>Sign out</button>
-        </div>
+    <Box>
+      {session?.user.username ? (
+        <Chat />
       ) : (
-        <div>
-          <div>Not signed in</div>
-          <button onClick={() => signIn()}>Sign in</button>
-        </div>
+        <Auth session={session} reloadSession={reloadSession} />
       )}
-    </div>
+    </Box>
   );
 }
 
 export default index;
 
 /* server Side Props */
+
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+  return {
+    props: {
+      session,
+    },
+  };
+}
