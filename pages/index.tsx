@@ -19,7 +19,7 @@ function index({}: Props) {
   return (
     <Box>
       {session?.user.username ? (
-        <Chat />
+        <Chat session={session} />
       ) : (
         <Auth session={session} reloadSession={reloadSession} />
       )}
