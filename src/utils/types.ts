@@ -1,4 +1,8 @@
-import { ConversationPopulated } from "./../../../backend/src/utils/types";
+import { messagePopulated } from "./../../../backend/src/resolvers/message";
+import {
+  ConversationPopulated,
+  messagePopulatedType,
+} from "./../../../backend/src/utils/types";
 export interface createUsernameData {
   createUsername: {
     success: boolean;
@@ -40,4 +44,14 @@ export interface CreateConversationInput {
 
 export interface ConversationData {
   conversations: Array<ConversationPopulated>;
+}
+
+/* messages */
+
+export interface MessageData {
+  messages: Array<messagePopulatedType>;
+}
+
+export interface MessageVariables {
+  conversationId: string;
 }

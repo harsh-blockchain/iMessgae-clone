@@ -83,6 +83,12 @@ export default function Auth({ session, reloadSession }: IAuthProps) {
               >
                 Continue with Google
               </Button>
+              <Button
+                onClick={() => signIn("linkedin")}
+                leftIcon={<Image height="20px" src="/linkedin.png" />}
+              >
+                Continue with Linkedin
+              </Button>
             </>
           )}
         </Stack>

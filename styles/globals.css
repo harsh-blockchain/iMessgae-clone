@@ -14,3 +14,17 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* Hide the scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ensure the content is still scrollable */
+.box::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+.box::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}

@@ -1,10 +1,11 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 import { Session } from "next-auth";
 import React, { useState } from "react";
 import ConversationModal from "./modal/Modal";
 import { ConversationPopulated } from "../../../../../backend/src/utils/types";
 import ConversationItem from "./ConversationItem";
 import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
 
 interface ConversationListProps {
   session: Session;
@@ -54,6 +55,20 @@ function ConversationList({
           userId={user_id}
         />
       ))}
+      <Box
+        position="absolute"
+        bottom={0}
+        left={0}
+        width="100%"
+        bg="#313131"
+        px={8}
+        py={6}
+        zIndex={1}
+      >
+        <Button width="100%" onClick={() => signOut()}>
+          Logout
+        </Button>
+      </Box>
     </Box>
   );
 }
